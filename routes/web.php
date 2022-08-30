@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['service.in'])->group(function () {
     Route::get('/', function () {
         return redirect('dashboard');
     });
@@ -30,5 +31,10 @@ use Illuminate\Support\Facades\Route;
     });
 
     require __DIR__ . '/auth.php';
+});
 
-
+Route::middleware(['service.out'])->group(function () {
+    Route::get('/out-of-service', function () {
+        return view('outOfRange');
+    })->name('out-of-service');
+});
