@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('dashboard');
-});
+    Route::get('/', function () {
+        return redirect('dashboard');
+    });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    Route::middleware(['auth'])->group(function () {
+        Route::get(
+            '/dashboard',
+            function () {
+                return redirect()->route('country.index');
+            }
+        )->name('dashboard');
 
-require __DIR__ . '/auth.php';
+        Route::resource('country', CountryController::class)->except('create', 'show', 'edit');
+    });
+
+    require __DIR__ . '/auth.php';
+
+
