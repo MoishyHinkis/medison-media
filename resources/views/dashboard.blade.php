@@ -65,7 +65,7 @@
                                             @method('PUT')
                                             <td>
                                                 <div class="flex justify-center">
-                                                    <input type="text" value={{ $country->name }} name="name">
+                                                    <input type="text" value="{{ $country->name }}" name="name">
                                                 </div>
                                             </td>
                                             <td>
@@ -76,7 +76,7 @@
                                             <td>
                                                 <div class="flex justify-center">
                                                     <button type="submit"
-                                                        class="border bg-blue-500 text-white rounded-md p-2">Edit</button>
+                                                       >Edit</button>
                                                 </div>
                                             </td>
                                         </form>
